@@ -1,3 +1,27 @@
 /* 
     General Styles used on every website (Don't Repeat Yourself)
 */
+
+.bg-color {
+  background: linear-gradient(to right, rgb(20, 238, 165), blue);
+}
+
+.section-bg {
+  background-color: black;
+}
+
+.border-radcustom {
+  border-radius: 1rem;
+}
+
+.border-radcustom2 {
+  border-radius: 1rem 0 0 1rem;
+}
+
+.color-i {
+  color: #ff6219;
+}
+
+.account-class {
+  color: #393f81;
+}

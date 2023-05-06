@@ -1,7 +1,137 @@
-/*
-    home.css: This website contains selectors only used in home.css
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Montserrat:wght@500&display=swap');
 
-    All pages share the styles on index.css but you should create 
-    one more css for each page that will contain the selected used 
-    on that page only (the ones not reused in other pages).
-*/
+body {
+    font-family: 'Lato', sans-serif;
+font-family: 'Montserrat', sans-serif;
+}
+
+.imagen {
+    width: 20px;
+}
+
+.navbarhome {
+    background-color: #000000;
+}
+
+.navbarregister {
+    background-color: #EB7F7F;
+
+}
+
+.navbarsingle {
+    background-color: #E4D18A;
+}
+
+.botonregister {
+
+    font-family: Courier New;
+    color: #ffffff;
+    font-size: 13px;
+    padding: 6px;
+    text-decoration: none;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 0px #666666;
+    -moz-box-shadow: 0px 0px 0px #666666;
+    box-shadow: 0px 0px 0px #666666;
+    text-shadow: 1px 1px 3px #ffffff;
+    border: dotted #ffffff 0px;
+    background: #000000;
+    padding: 12px;
+}
+
+.botonlogin {
+
+    font-family: Courier New;
+    color: #ffffff;
+    font-size: 13px;
+    padding: 6px;
+    text-decoration: none;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 0px #666666;
+    -moz-box-shadow: 0px 0px 0px #666666;
+    box-shadow: 0px 0px 0px #666666;
+    text-shadow: 1px 1px 3px #ffffff;
+    border: dotted #ffffff 0px;
+    background: #000000;
+    padding: 12px;
+}
+
+.footer {
+    background-color: #ffffff;
+    opacity: 0;
+    
+}
+
+a:link,
+a:visited,
+a:active {
+    text-decoration: none;
+}
+
+.form {
+    width: 500px;
+    height: 500px;
+    background-color: #a9a9a9;
+    margin-top: 70px;
+    margin-left: 20px;
+    border-radius: 4px;
+}
+
+.publicity {
+    width: 450px;
+    height: 650px;
+    background-color: #FF3B3F;
+    margin-top: 0px;
+    margin-left: 250px;
+    border-radius: 4px;
+}
+
+
+.submit {
+    background-color: #ff3b3f;
+    margin-top: 14px;
+    border: white;
+    border-radius: 4px;
+    width: 100px;
+    height: 40px;
+
+}
+
+.about {
+    width: 1300px;
+    height: 600px;
+    background-color: #CCEAF4;
+}
+
+.botondisabled {
+    pointer-events: none; 
+    opacity: .0;
+    Cursor: default;
+}
+
+.logoback {
+    margin-top: 600px;
+    margin-left: 50px;
+}
+
+.logout {
+    color: #FF3B3F;
+}
+
+.login {
+    background-color: #a9a9a9;
+}
+
+.addproject {
+    width: 500px;
+    height: 500px;
+    background-color: #000000;
+    margin-top: 70px;
+    margin-left: 20px;
+    border-radius: 4px;
+}

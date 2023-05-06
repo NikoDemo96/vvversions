@@ -16,6 +16,8 @@ class User(db.Model):
     password = db.Column(db.String(240), unique=False, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
     role = db.Column(db.Enum(Role), nullable=False, default="other")
+
+
    
 
     def __repr__(self):
@@ -56,11 +58,20 @@ class Song(db.Model):
 
 
 
-class Coment(db.Model):
+class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String(600), nullable=False)
-    start_date = db.Column(db.String(50), nullable=False)
+    createdAt = db.Column(db.DateTime, nullable=False) #No estoy miuy seguro si Timestamp sea el tipo de dato para fechas en PostgreSQL
+    updateAt = db.Column(db.DateTime, nullable=False)
     ad_image = db.Column(db.String(250), nullable=False)
+    
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user = db.relationship('User', backref='Comment', lazy=True)
+
+    proyect_id = db.Column(db.Integer, db.ForeignKey('proyect.id'), nullable=False)
+
+
+
     
 
     def __repr__(self):
@@ -70,7 +81,8 @@ class Coment(db.Model):
         return {
             "id": self.id,
             "text": self.text,
-            "start_date": self.start_date,
+            "createdAt": self.createdAt,
+            "updateAt": self.updateAt,
             "ad_image": self.ad_image
         }
 

@@ -1,7 +1,9 @@
 import React from "react";
 
 
-const CommentBox = () => {
+const Comment = () => {
+    
+
 
     return (
         <div>
@@ -10,4 +12,4 @@ const CommentBox = () => {
     );
 };
 
-export default CommentBox
+export default Comment

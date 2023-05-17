@@ -3,10 +3,10 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Role
+from api.models import db, User, Role, Comment, Song, Project
 from api.utils import generate_sitemap, APIException
 from api.firebase.firebase import Bucket
 
@@ -71,7 +71,7 @@ def login():
     if check_password_hash(login_user.password, password):
         token = create_access_token({"id": login_user.id})
         print(token)
-        return jsonify({"access_token": token, "artist_name": login_user.artist_name})
+        return jsonify({"access_token": token, "artist_name": login_user.artist_name, "username": login_user.username})
     else:
         return jsonify({"error": "Contrasena incorrecta"}), 401
 
@@ -99,15 +99,213 @@ def change_password():
     
     return {"error": "Contrasena invalida"}
 
-@api.route("/songs", methods={"POST"}) 
-def create_song():
-    form = request.form
-    files = request.files 
-    title = form.get("title")
-    gender = form.get("gender")
-    version_date = form.get("version_date")
-    song = files.get("song")
-    print(title, gender, song, version_date)
-    url = Bucket.upload_file(song, song.filename)
-    print(url)
-    return "ok mi pana"
+@api.route("/projects", methods=["GET"])
+@jwt_required()
+def get_project():
+    user_data = get_jwt_identity()
+    user_id = user_data["id"]
+    projects = Project.query.filter_by(user_id=user_id).all()
+    return jsonify({"projects": [project.serialize() for project in projects]})
+    
+@api.route("/projects", methods=["POST"])
+@jwt_required()
+def create_project():
+    body = request.json
+    user_data = get_jwt_identity()
+    body["user_id"] = user_data["id"]
+
+    project = Project.create(body)
+    if project is not None:
+        return jsonify({"msg": project.serialize()}), 201
+    return jsonify({"msg": "ocurrio un error"}), 500
+
+
+@api.route("/project/<int:id>", methods=["POST"])
+@jwt_required()
+def create_version(id):
+    body = request.json
+    version_date = body.get("version_date", None)
+    project = Project.query.filter_by(id=id).first()
+    user_data = get_jwt_identity()
+    all_versions = Project.query.filter_by(user_id=user_data["id"], title=project.title).all()
+    version = len(all_versions)
+    new_version = Project(title=project.title, version=version+1, user_id=user_data["id"], version_date=version_date)
+    db.session.add(new_version)
+    
+    try:
+        db.session.commit()
+        return jsonify({"msg": "Version creada con exito"})
+    except Exception as error:
+        db.session.rollback()
+        print(error)
+        return jsonify({"error": "Ha ocurrido un erros"}), 500
+        
+
+
+
+
+@api.route("/project/<int:id>", methods=["DELETE"])
+@jwt_required()
+def delete_project(id):
+    
+    project = Project.query.filter_by(id=id).first()
+    print(project)
+    if project is not None:
+        try:
+            db.session.delete(project)
+            db.session.commit()
+            return jsonify({"msg": f"Project nro {project.id} ha sido eliminado"})
+        except Exception as error: 
+            db.session.rollback()
+            return jsonify({"msg": error.args[0]}), 500    
+            
+    else:
+        return jsonify({"error": "Proyecto no encontrado"})
+
+
+
+
+@api.route("/comments/<int:song_id>")
+@jwt_required()
+def get_comments(song_id):
+    comments = Comment.query.filter_by(song_id=song_id).all()
+ 
+    return jsonify([comment.serialize() for comment in comments])
+
+
+
+@api.route("/comments/<int:song_id>", methods=["POST"])
+@jwt_required()
+def create_comment(song_id):
+    body = request.json
+    content = body.get("content", None)
+    start_date = body.get("start_date", None)
+    user_id = get_jwt_identity()
+    print(user_id)
+    print(body)
+    
+    if content is None: 
+        return jsonify({"error": "Es necesario un contenido"}), 400
+    comment = Comment(content=content, user_id=user_id["id"], start_date=start_date, song_id=song_id)
+
+    db.session.add(comment)
+    try:
+
+        db.session.commit()
+        print(comment.serialize())
+        return jsonify({"msg": "Se agrego comentario"})
+    except Exception as error: 
+        db.session.rollback()
+        return jsonify({"msg": error.args[0]}), 400
+
+
+
+@api.route("/comments/<int:song_id>/<int:comment_id>", methods=["PUT"])
+@jwt_required()
+def update_comment(song_id, comment_id):
+    comment = Comment.query.filter_by(song_id=song_id, id=comment_id).first()
+
+    if comment:
+        body = request.json
+        content = body.get("content", None)
+        comment.content = content
+
+        try:
+            db.session.commit()
+            return jsonify(comment.serialize())
+        except Exception as error: 
+            db.session.rollback()
+            return jsonify({"msg": error.args[0]}), 500
+            
+    else:
+        return jsonify({"error": "Comment not found"}), 404
+
+
+
+@api.route("/comments/<int:comment_id>", methods=["DELETE"])
+@jwt_required()
+def delete_comment(comment_id):
+    comment = Comment.query.filter_by(id=comment_id).first()
+
+    if comment:
+        db.session.delete(comment)
+        db.session.commit()
+
+        return jsonify({"message": "Comment deleted"})
+    else:
+        return jsonify({"error": "Comment not found"})
+
+
+
+
+@api.route("/songs/<int:project_id>", methods=["POST", "GET"]) 
+@jwt_required()
+def create_song(project_id):
+    if request.method == "POST":
+        form = request.form
+        files = request.files 
+        title = form.get("title")
+        description = form.get("description")
+        gender = form.get("gender")
+        artist = form.get("artist")
+        version_date = form.get("version_date")
+        song = files.get("song")
+        cover = files.get("cover")
+        user_data = get_jwt_identity()
+        user_id = user_data["id"]
+        #print(song, cover)
+        song_url = Bucket.upload_file(song, title+"song")
+        cover_url = Bucket.upload_file(cover, title)
+        new_song = Song(artist=artist, title=title, description=description, gender=gender, version_date=version_date, song_url=song_url, cover_url=cover_url, user_id=user_id, project_id=project_id)
+    
+        project = Project.query.filter_by(id=project_id).first()
+        print("******************************************")
+        print(project)
+        print("******************************************")
+        db.session.add(new_song)
+        try:
+
+            db.session.commit()
+            return jsonify(new_song.serialize())
+        except Exception as error: 
+            db.session.rollback()
+            print(error)
+            return jsonify({"msg": "error"}), 500
+    elif request.method == "GET":
+        songs = [song.serialize() for song in Song.query.filter_by(project_id=project_id).all()]
+        print(songs)
+        return jsonify({"songs": songs}), 200
+
+@api.route("/songs/<int:song_id>", methods=["DELETE"])
+@jwt_required()
+def delete_song(song_id):
+    print("******************************************")
+    print(song_id)
+    print("******************************************")
+    song = Song.query.filter_by(id=song_id).first()
+    print(song)
+    print("******************************************")
+    if song:
+        db.session.delete(song)
+        db.session.commit()
+
+        return jsonify({"message": "Song deleted"})
+    else:
+        return jsonify({"error": "Song not found"})
+
+@api.route("/song-byid/<int:song_id>", methods=["GET"])
+@jwt_required()
+def get_song(song_id):
+    print("******************************************")
+    # print(song_id)
+    print("******************************************")
+    song = Song.query.filter_by(id=song_id).first()
+    project = Project.query.filter_by(id=song.project_id).first()
+    result_song = {**song.serialize()}
+    result_project = {**project.serialize()}
+    result = {**result_song, **result_project}
+    print("******************************************")
+    if song:
+        return jsonify({"result": result}), 200
+    else:
+        return jsonify({"error": "Song not found"}), 404

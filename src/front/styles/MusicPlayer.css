@@ -50,7 +50,7 @@
 
 .progressBarStyle {
   --bar-bg: rgb(243, 165, 165);
-  --seek-before-width: 100px;
+  /* --seek-before-width: 100px; */
   --seek-before-color: rgb(252, 49, 49);
   --knobby: rgb(0, 81, 255);
   --selectedKnobby: rgb(0, 140, 255);

@@ -2,6 +2,7 @@ import React, {useContext} from "react";
 import { useForm } from "react-hook-form";
 import { Context } from "../store/appContext"; 
 import { useNavigate, Link } from "react-router-dom";
+import VVVERSIONSLOGONEGROMOBILE from "../../img/VVVERSIONSLOGONEGROMOBILE.png";
 
 
 export const Register = () => {
@@ -21,12 +22,12 @@ export const Register = () => {
         
     }
     return (<div className="d-flex">
-         <div className=""><Link to="/"><i className=" fa-solid fa-angles-left text-dark logoback p-3 ">BACK</i></Link></div>
+         <div className=""><Link to="/"><img src={VVVERSIONSLOGONEGROMOBILE} className="back p-2"></img></Link></div>
         <div className="form p-3 ">
 
             <form onSubmit={handleSubmit(OnSubmit)}>
                 
-                <h2 className="text-center p-3 mt-3">REGISTER</h2>
+                <h2 className="text-center p-3 mt-3 text-white">REGISTER</h2>
                 <div>
                     <div className="p-1">
                         <input className="form-control" type="text" {...register(`username`, {
@@ -76,7 +77,6 @@ export const Register = () => {
                     </div>
                 </div>
             </form>
-
         </div>
         <div className="publicity container text-center">
             <div id="carouselExampleAutoplaying" className="carousel slide p-5 text-dark mt-5" data-bs-ride="carousel">

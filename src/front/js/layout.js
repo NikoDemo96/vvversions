@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
+import { ToastContainer } from "react-toastify";
 
 import { Home } from "./pages/home";
 import { Register } from "./pages/register.jsx";
@@ -12,7 +13,12 @@ import { About } from "./pages/about.jsx";
 
 import { Navbar } from "./component/navbar";
 import Login from "./pages/login";
-import { AddProject } from "./pages/addproject.jsx";
+import { AddSong } from "./pages/addsong.jsx";
+import { SongRevision } from "./pages/SongRevision.jsx";
+import { ProjectInput } from "./pages/projectinput.jsx";
+import {  Revisions } from "./pages/revisions.jsx";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 //create your first component
 const Layout = () => {
@@ -24,9 +30,10 @@ const Layout = () => {
 
     return (
         <div>
+            
             <BrowserRouter basename={basename}>
                 <ScrollToTop>
-                    <Navbar />
+                <ToastContainer />
                     <Routes>
                         <Route element={<Home />} path="/" />
                         <Route element={<Register />} path='/register' />
@@ -34,7 +41,11 @@ const Layout = () => {
                         <Route element={<About />} path="/about" />
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<Main />} path="/main" />
-                        <Route element={<AddProject />} path="/addproject" />
+                        <Route element={<AddSong />} path="/addsong/:id" />
+                        <Route element={<SongRevision/>} path="/songrevision/:projectid/:songid"/>
+                        <Route element={<ProjectInput />} path="/projectinput" />
+                        <Route element={<Revisions />} path="/revisions/:id" />
+
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                 </ScrollToTop>

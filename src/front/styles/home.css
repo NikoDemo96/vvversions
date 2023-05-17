@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Montserrat:wght@500&display=swap');
+@import url(https://fonts.googleapis.com/css?family=Gudea:400,700);
 
 body {
     font-family: 'Lato', sans-serif;
-font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #ffe4e4
 }
 
 .imagen {
@@ -11,7 +13,8 @@ font-family: 'Montserrat', sans-serif;
 }
 
 .navbarhome {
-    background-color: #000000;
+    background-color: rgb(0, 0, 0);
+
 }
 
 .navbarregister {
@@ -25,46 +28,32 @@ font-family: 'Montserrat', sans-serif;
 
 .botonregister {
 
-    font-family: Courier New;
+    
     color: #ffffff;
-    font-size: 13px;
-    padding: 6px;
-    text-decoration: none;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    border-radius: 5px;
-    -webkit-box-shadow: 0px 0px 0px #666666;
-    -moz-box-shadow: 0px 0px 0px #666666;
-    box-shadow: 0px 0px 0px #666666;
-    text-shadow: 1px 1px 3px #ffffff;
-    border: dotted #ffffff 0px;
-    background: #000000;
-    padding: 12px;
+    background-color: #000000;
+    border-style: none;
+    
 }
 
 .botonlogin {
 
-    font-family: Courier New;
+    
     color: #ffffff;
-    font-size: 13px;
-    padding: 6px;
-    text-decoration: none;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    border-radius: 5px;
-    -webkit-box-shadow: 0px 0px 0px #666666;
-    -moz-box-shadow: 0px 0px 0px #666666;
-    box-shadow: 0px 0px 0px #666666;
-    text-shadow: 1px 1px 3px #ffffff;
-    border: dotted #ffffff 0px;
+    border-style: none;
     background: #000000;
-    padding: 12px;
+
+}
+
+.botonlogout {
+    
+    color: #ff0000;
+    border-style: none; 
 }
 
 .footer {
     background-color: #ffffff;
     opacity: 0;
-    
+
 }
 
 a:link,
@@ -74,42 +63,53 @@ a:active {
 }
 
 .form {
+    @import url(https://fonts.googleapis.com/css?family=Gudea:400,700);
+
+
+    perspective: 800px;
     width: 500px;
-    height: 500px;
-    background-color: #a9a9a9;
-    margin-top: 70px;
+    height: 499px;
+    border-radius: 10px;
+    margin: 103px;
+    margin-right: 70px;
     margin-left: 20px;
-    border-radius: 4px;
+    background-color: #000000;
+
 }
 
 .publicity {
     width: 450px;
     height: 650px;
-    background-color: #FF3B3F;
-    margin-top: 0px;
-    margin-left: 250px;
-    border-radius: 4px;
+    background-color: #ffffff;
+    margin-top: 95px;
+    margin-left: 150px;
+
+    border-radius: 20px;
+
+    border-style: double;
+    border-width: 7px;
+    border-color: #d4d0d0;
 }
 
 
 .submit {
-    background-color: #ff3b3f;
-    margin-top: 14px;
+    background-color: #c3393b;
+    margin-top: 50px;
     border: white;
     border-radius: 4px;
     width: 100px;
     height: 40px;
-
 }
 
 .about {
     width: 1300px;
-    height: 600px;
-    background-color: #CCEAF4;
+    height: 700px;
+    background-color: #9ee2eefc;
+    margin-top: 50px;
 }
 
 .botondisabled {
-    pointer-events: none; 
+    pointer-events: none;
     opacity: .0;
     Cursor: default;
 }
@@ -124,14 +124,235 @@ a:active {
 }
 
 .login {
-    background-color: #a9a9a9;
+    perspective: 800px;
+    width: 500px;
+    height: 499px;
+    border-radius: 10px;
+    margin: 103px;
+    margin-right: 70px;
+    margin-left: 20px;
+    background-color: #000000;
+
 }
 
 .addproject {
     width: 500px;
-    height: 500px;
+    height: 700px;
     background-color: #000000;
     margin-top: 70px;
     margin-left: 20px;
     border-radius: 4px;
+}
+
+.projectimage {
+    width: 180px;
+    height: 180px;
+    margin-top: 18px;
+    margin-left: 1000px;
+}
+
+.projectname {
+    margin-top: 24px;
+    margin-left: 20px;
+    font-weight: 700;
+    font-size: 40px;
+    width: 600px;
+
+}
+
+.projectcontainer {
+    background-color: #ffffff;
+    border-radius: 20px;
+    height: 230px;
+    border-style: double;
+    border-width: 7px;
+    border-color: #d4d0d0;
+
+}
+
+.placeholder2 {
+    border-radius: 3px;
+    width: 300px;
+    height: 33px;
+    border-color: #454343;
+    text-align: center;
+    border: 1px solid rgb(92, 91, 91);
+    background-color: #ffffff;
+    border-radius: 7px;
+}
+
+.date {
+    font-size: 14px;
+    margin-top: 25px;
+}
+
+.version {
+    font-size: 14px;
+    font-weight: 600
+
+    ;
+}
+
+.addfiles {
+    margin-top: 14px;
+    width: 120px;
+    height: 40px;
+}
+
+.titlesong {
+    font-size: 13px;
+    margin-left: 22px;
+}
+
+input::placeholder {
+    font-weight: bold;
+    opacity: 1;
+    color: rgb(33, 30, 30);
+    font-size: small;
+    border-color: #000000;
+}
+
+.button-container {
+    display: inline-block;
+    position: relative;
+}
+
+.button-container a {
+    position: absolute;
+    bottom: 4em;
+    right: 4em;
+    background-color: #8F0005;
+    border-radius: 1.5em;
+    color: white;
+    text-transform: uppercase;
+    padding: 1em 1.5em;
+}
+
+.coveralbum {
+    margin-top: 10px;
+    width: 80px;
+    height: 80px;
+    gap: 5px;
+}
+
+.newversion {
+    font-size: 14px;
+    background-color: #3e8d14;
+    border-radius: 6px;
+    margin-right: 130px;
+    margin-left: 18px;
+    margin-top: 61px;
+    border-color: #ffffff;
+
+}
+
+.deleteproject {
+    margin-top: 27px;
+    border: 0px;
+    background-color: #ffffff;
+}
+
+.deleteproject2 {
+    margin-top: 28px;
+    border: 0px;
+    background-color: #ffffff;
+}
+
+
+.back {
+    margin-top: 690px;
+    margin-left: 100px;
+    width: 100px;
+}
+
+.titlesong2 {
+    margin-top: 85px;
+    margin-left: 20px;
+}
+
+.projectname2 {
+    margin-top: 24px;
+    margin-right: 50px;
+    margin-left: 1px;
+    font-weight: 700;
+    font-size: 40px;
+}
+
+.artistheader {
+    font-style: unset;
+}
+
+.artistdecal {
+    font-size: 14px;
+    margin-top: 19px;
+}
+
+.member {
+    border-color: #a9a9a9;
+}
+
+.back2 {
+    width: 110px;
+    margin-right: 100px;
+    margin-top: 17px;
+}
+
+.aboutmetxt {
+    font-weight: 700;
+}
+
+.openbutton2 {
+    width: 100px;
+    height: 50px;
+}
+
+.commentsbyartist {
+    display: flex;
+    justify-content: center;
+    border-radius: 9px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    height: 150px;
+    width: 1270px;
+}
+
+.soundwavelogo {
+    width: 300px;
+    margin-left: 300px;
+}
+
+.openbutton {
+    margin-top: 14px;
+    width: 120px;
+    height: 40px;
+}
+
+.aboutlink {
+    margin-right: 77px;
+    margin-top: 24px;
+}
+
+
+
+.logouttitle {
+    justify-content: end;
+    border: none;
+    background-color: transparent;
+    
+}
+
+.revisiontitle {
+    justify-content: center;
+    margin-left: 560px;
+    font-size: 30px;
+}
+
+.basura {
+    border: none;
+    background-color: transparent;
+}
+
+.artistname {
+    
 }

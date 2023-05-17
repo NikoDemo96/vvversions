@@ -1,12 +1,19 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import "../../../styles/MusicPlayer.css";
-import WaveSurfer from "wavesurfer.js";
+import { Context } from "../../store/appContext";
+import { useParams } from "react-router-dom";
+import soundwave2 from "../../../img/soundwave2.png";
+
 
 const MusicPlayer = () => {
   // State
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState("00:00");
   const [currentTime, setCurrentTime] = useState(0);
+  const { store, actions } = useContext(Context);
+
+  //
+  const params = useParams();
 
   // References
   const musicPlayer = useRef(); // We use this and useRef to grab our audio easier.
@@ -62,7 +69,7 @@ const MusicPlayer = () => {
     // It will call "whilePlaying" again at the end of this function. And since we're still asigning it to the animationRef we set up, pausing it will stop it.
   };
 
-  // To sumarize, the "changeRange" function  is updating the musicPlayer based on the range slider. Then it's calling the "changePalyerCurrentTime" which
+  // To summarize, the "changeRange" function  is updating the musicPlayer based on the range slider. Then it's calling the "changePalyerCurrentTime" which
   // updates the style and then state.
   const changeRange = () => {
     musicPlayer.current.currentTime = progressBar.current.value; // We are updating the range slider and telling the music player to jump wherever the range slider is.
@@ -82,13 +89,15 @@ const MusicPlayer = () => {
 
   // Functions to go back/forward
   const backFive = () => {
-    progressBar.current.value = Number(progressBar.current.value - 5); // Number() it's a JS function that will take any string and convert it to a number.
+    progressBar.current.value = Number(progressBar.current.value) - 5; // Number() it's a JS function that will take any string and convert it to a number.
     changeRange(); // We want to update everything just as we did with the range slider.
+    console.log(typeof progressBar.current.value)
   };
 
   const forwardFive = () => {
-    progressBar.current.value = Number(progressBar.current.value + 5);
+    progressBar.current.value = Number(progressBar.current.value) + 5;
     changeRange();
+    console.log(typeof progressBar.current.value)
   };
 
   // Intentando que el waveSurfer funciona aqui:
@@ -102,55 +111,79 @@ const MusicPlayer = () => {
   //     "https://storage.googleapis.com/vvversions-proyect.appspot.com/guitarsound.mp3"
   //   );
   // }, []);
+  const [song, setSong] = useState();
+  //const song = store.song.find(element => element.id == params.id)
+
+  useEffect(() => {
+    if (store.projects.length == 0) return
+    const project = store.projects.find((project) => params.projectid == project.id)
+    const currentSong = project.songs.find((song) => params.songid == song.id)
+    setSong(currentSong)
+    console.log(currentSong);
+
+  }, [store.projects])
 
   return (
-    <div className="musicPlayerStyle">
-      <div>El SoundWave Pattern deberia ir aqui</div>
-      {/* <div id="waveform">El Wave Surfer deberia de ir aqui</div> */}
-      <audio
-        ref={musicPlayer} // Here we connect to our useRef hook
-        src="https://storage.googleapis.com/vvversions-proyect.appspot.com/guitarsound.mp3"
-        onLoadedMetadata={loadedMusicMetadata}
+    <div>
+    <div className="d-flex">
+      <div className="musicPlayerStyle">
+        <div ><img src={soundwave2} className="soundwavelogo"></img></div>
+        {/* <div id="waveform">El Wave Surfer deberia de ir aqui</div> */}
+        <audio
+          ref={musicPlayer} // Here we connect to our useRef hook
+          src={song?.song_url} //
+          onLoadedMetadata={loadedMusicMetadata}
         // preload={metadata} va de la mano con el useEffect
-      ></audio>
+        ></audio>
 
-      {/* Backward 5 seconds */}
-      <button className="forwardBackward" onClick={backFive}>
-        <i class="fas fa-long-arrow-left"></i> 5
-      </button>
+        {/* Backward 5 seconds */}
+        <button className="forwardBackward" onClick={backFive}>
+          <i className="fas fa-long-arrow-left"></i> 5
+        </button>
 
-      {/* Play and Pause botton */}
-      <button className="playPause" onClick={togglePlayPause}>
-        {isPlaying ? (
-          <i className="fas fa-pause"></i>
-        ) : (
-          <i className="fas fa-play play"></i>
-        )}
-      </button>
+        {/* Play and Pause botton */}
+        <button className="playPause" onClick={togglePlayPause}>
+          {isPlaying ? (
+            <i className="fas fa-pause"></i>
+          ) : (
+            <i className="fas fa-play play"></i>
+          )}
+        </button>
 
-      {/* Forward 5 seconds */}
-      <button className="forwardBackward" onClick={forwardFive}>
-        5 <i className="fas fa-long-arrow-right"></i>
-      </button>
+        {/* Forward 5 seconds */}
+        <button className="forwardBackward" onClick={forwardFive}>
+          5 <i className="fas fa-long-arrow-right"></i>
+        </button>
 
-      {/*Current time*/}
-      <div className="currenTimeStyle">{calculateTime(currentTime)}</div>
+        {/*Current time*/}
+        <div className="currenTimeStyle ">{calculateTime(currentTime)}</div>
 
-      {/*Progress Bar*/}
-      <div>
-        <input
-          type="range"
-          defaultValue="0"
-          ref={progressBar}
-          onChange={changeRange}
-          className="progressBarStyle"
-        ></input>
+        {/*Progress Bar*/}
+        <div>
+          <input
+            type="range"
+            defaultValue="0"
+            ref={progressBar}
+            onChange={changeRange}
+            className="progressBarStyle"
+          ></input>
+        </div>
+        {/*Duration*/}
+        <div className="durationStyle">
+          {duration && !isNaN(duration) && calculateTime(duration)}
+        </div>
+
       </div>
-      {/*Duration*/}
-      <div className="durationStyle">
-        {duration && !isNaN(duration) && calculateTime(duration)}
-      </div>
+      
+      
     </div>
+    <div className="p-5 d-flex commentsbyartist">
+    <div className="justify-content-center text-center fs-5">{song && song.description}</div>
+    </div>
+    </div>
+    
+    
+    
   );
 };
 

@@ -36,7 +36,7 @@ export const AddSong = () => {
                 <h2 className="text-center text-white p-3 mt-3">Add Files</h2>
                 <div>
                     <div className="p-1">
-                        <label className="text-white p-1">add song</label>
+                        <label className="text-white p-1">Add song</label>
                         <input className="form-control" type="file" {...register(`soundfile`, {
                             required: true
                         })} placeholder="Add Mp3/Wav file">
@@ -46,7 +46,7 @@ export const AddSong = () => {
                         {errors.email?.type === `required` && <p className="text-danger">El Campo es Requerido</p>}
                     </div>
                     <div className="p-1">
-                        <label className="text-white p-1">add image</label>
+                        <label className="text-white p-1">Add image</label>
                         <input className="form-control" type="file" {...register(`imagefile`, {
                             required: true
                         })} placeholder="Add Image">

@@ -80,7 +80,7 @@ const Login = () => {
           </form>
         </div>
       </div>
-      <div className="">
+      <div className="ms-3">
         <Link to="/">
           <img src={VVVERSIONSLOGONEGROMOBILE} className="back2 p-2"></img>
         </Link>

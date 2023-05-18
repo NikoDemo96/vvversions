@@ -22,7 +22,7 @@ export const Register = () => {
         
     }
     return (<div className="d-flex">
-         <div className=""><Link to="/"><img src={VVVERSIONSLOGONEGROMOBILE} className="back p-2"></img></Link></div>
+         <div className=""><Link to="/"><img src={VVVERSIONSLOGONEGROMOBILE} className="back "></img></Link></div>
         <div className="form p-3 ">
 
             <form onSubmit={handleSubmit(OnSubmit)}>

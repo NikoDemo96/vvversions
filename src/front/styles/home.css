@@ -65,12 +65,11 @@ a:active {
 .form {
     @import url(https://fonts.googleapis.com/css?family=Gudea:400,700);
 
-
     perspective: 800px;
     width: 500px;
     height: 499px;
     border-radius: 10px;
-    margin: 103px;
+    margin: 97px;
     margin-right: 70px;
     margin-left: 20px;
     background-color: #000000;
@@ -80,12 +79,10 @@ a:active {
 .publicity {
     width: 450px;
     height: 650px;
-    background-color: #ffffff;
+    background-color: #fafcfe;
     margin-top: 95px;
     margin-left: 150px;
-
     border-radius: 20px;
-
     border-style: double;
     border-width: 7px;
     border-color: #d4d0d0;
@@ -103,9 +100,9 @@ a:active {
 
 .about {
     width: 1300px;
-    height: 700px;
-    background-color: #9ee2eefc;
-    margin-top: 50px;
+    height: 750px;
+    background-color: #f9e7a5fc;
+    margin-top: 30px;
 }
 
 .botondisabled {
@@ -194,7 +191,7 @@ a:active {
 }
 
 .addfiles {
-    margin-top: 14px;
+    margin-top: 10px;
     width: 120px;
     height: 40px;
 }
@@ -220,19 +217,20 @@ input::placeholder {
 .button-container a {
     position: absolute;
     bottom: 4em;
-    right: 4em;
+    right: 3em;
     background-color: #8F0005;
     border-radius: 1.5em;
     color: white;
     text-transform: uppercase;
     padding: 1em 1.5em;
+    
 }
 
 .coveralbum {
     margin-top: 10px;
-    width: 80px;
-    height: 80px;
-    gap: 5px;
+    width: 77px;
+    height: 77px;
+    gap: 8px;
 }
 
 .newversion {
@@ -260,7 +258,7 @@ input::placeholder {
 
 
 .back {
-    margin-top: 690px;
+    margin-top: 670px;
     margin-left: 100px;
     width: 100px;
 }
@@ -292,9 +290,8 @@ input::placeholder {
 }
 
 .back2 {
-    width: 110px;
-    margin-right: 100px;
-    margin-top: 17px;
+    width: 100px;
+    
 }
 
 .aboutmetxt {
@@ -329,17 +326,16 @@ input::placeholder {
 }
 
 .aboutlink {
-    margin-right: 77px;
+    margin-right: 67px;
     margin-top: 24px;
 }
 
 
 
 .logouttitle {
-    justify-content: end;
     border: none;
     background-color: transparent;
-    
+    margin-top: 5px;
 }
 
 .revisiontitle {
@@ -353,6 +349,20 @@ input::placeholder {
     background-color: transparent;
 }
 
-.artistname {
-    
+.projectname3 {
+    font-weight: 700;
+}
+
+.pedro {
+    width: 120px;
+    border-radius: 50%;
+    border-color: #d4d0d0;
+    border-style: double;
+}
+
+.rex {
+    width: 130px;
+    border-radius: 50%;
+    border-color: #d4d0d0;
+    border-style: double;
 }

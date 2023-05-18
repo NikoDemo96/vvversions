@@ -3,7 +3,6 @@ import { useNavigate, Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import VVVERSIONSLOGONEGRO from "../../img/VVVERSIONSLOGONEGRO.png";
 
-
 export function Revisions() {
   const [divs, setDivs] = useState([]);
   const [project, setProject] = useState();
@@ -34,41 +33,39 @@ export function Revisions() {
 
   useEffect(() => {
     actions.cleanComments();
-  },[])
-
+  }, []);
 
   return (
     <div>
-      <div className="col-11 mt-5 text-end">
-        <button
-            onClick={handleLogout}
-            className="text-danger logouttitle"
-          >
+      <div className="d-flex justify-content-between p-5 mt-2">
+        <div className="col-3">
+          <Link to="/projectinput">
+          <i className="fa-solid fa-backward text-black fs-4 mt-1"></i>
+          </Link>
+        </div>
+        <div className="text-center col-6">
+          <span className="text-dark">
+            <h3><i>Revisions of {project && project.title}</i></h3>
+          </span>
+        </div>
+        <div className="col-3 text-end fs-5">
+          <button onClick={handleLogout} className="text-danger logouttitle">
             <i className="fas fa-sign-out-alt"></i>
           </button>
-          </div>
-      <div className="d-flex mt-2">
-        
-       <div className="col-12 text-center mt-4">
-        <span className="text-dark"><h3>
-          Revisions of {project && project.title}</h3>
-        </span>
-        </div>
-        <div>
         </div>
       </div>
       <div className="text-center">
-      <button
-        onClick={handleClick}
-        className=" btn btn-outline-dark version fs-6 mt-5 text-end"
-      >
-        Add Revision{" "}
-      </button>
+        <button
+          onClick={handleClick}
+          className=" btn btn-outline-dark version fs-6 mt-3 text-end"
+        >
+          Add Revision{" "}
+        </button>
       </div>
       <div>
         {project &&
           project.songs.map((song, index) => (
-            <div className="container d-flex projectcontainer my-1 col-8 justify-content-between ">
+            <div className="container d-flex projectcontainer my-2 col-8 justify-content-between ">
               <div className="d-flex">
                 <div>
                   {" "}
@@ -80,10 +77,9 @@ export function Revisions() {
                 <div>
                   <div className="text-start">
                     <h2 className="projectname">{project.title} </h2>
-
                   </div>
                   <div>
-                    <div className="text-start titlesong">title song </div>
+                    <div className="text-start titlesong">Title Song </div>
                   </div>
                   <div className=""></div>
                 </div>
@@ -95,7 +91,7 @@ export function Revisions() {
                 </div>
                 <div className="version">
                   <p>
-                    version {project.version}.{index}{" "}
+                    Version {project.version}.{index}{" "}
                   </p>
                 </div>
                 <div className="">
@@ -105,34 +101,27 @@ export function Revisions() {
                       className="btn btn-outline-dark openbutton2"
                       onClick={() => goToSong(song.id)}
                     >
-                      Go Song
+                      Go to song
                     </button>
                   </div>
                   <button
                     className="deleteproject2 text-danger"
                     onClick={() => actions.deleteSong(song.id)}
                   >
-                    delete song
+                    Delete song
                   </button>
                 </div>
               </div>
             </div>
           ))}
       </div>
-      <div className="d-flex">
-        
+      <div className="d-flex mt-3">
         <div>
-        <div className="text-center">
-          
-          <img src={VVVERSIONSLOGONEGRO} className="col-2 text-center"></img>
+          <div className="text-center">
+            <img src={VVVERSIONSLOGONEGRO} className="col-2 text-center"></img>
           </div>
         </div>
       </div>
-      <div className="">
-          <Link to="/projectinput">
-            <p className="back2 p-2">go back to your projects</p>
-          </Link>
-        </div>
     </div>
   );
 }

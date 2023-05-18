@@ -47,17 +47,17 @@ const Comments = () => {
 
   return (
     <div className="container">
-      <div className="p-3">
+      <div className="p-1">
         {" "}
-        <i>add your comment</i>
+        <i>Add your comment</i>
       </div>
       <div>{error !== "" && <span>Llene el comentario</span>}</div>
-      <div className="comment-form-row p-3">
+      <div className="comment-form-row p-1">
         <input
           value={commentBody}
           onChange={(event) => handleCommentChange(event)}
           className="message-input p-3"
-          placeholder="what do you think of this song?"
+          placeholder="What do you think of this song?"
         ></input>
         <button onClick={(event) => onComment(event)} className="btn">
           Comment

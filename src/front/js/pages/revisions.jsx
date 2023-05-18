@@ -39,24 +39,23 @@ export function Revisions() {
 
   return (
     <div>
-      <div className="d-flex mt-5">
+      <div className="col-11 mt-5 text-end">
+        <button
+            onClick={handleLogout}
+            className="text-danger logouttitle"
+          >
+            <i className="fas fa-sign-out-alt"></i>
+          </button>
+          </div>
+      <div className="d-flex mt-2">
         
-       <div className="revisiontitle col-5 mt-3">
-        <span className="text-dark fs-1 ">
-          Revisions of {project && project.title}
+       <div className="col-12 text-center mt-4">
+        <span className="text-dark"><h3>
+          Revisions of {project && project.title}</h3>
         </span>
         </div>
         <div>
-        <div className="">
-        <button
-            onClick={handleLogout}
-            className="text-danger logouttitle  "
-          >
-            Log out
-          </button>
-          </div>
         </div>
-
       </div>
       <div className="text-center">
       <button
@@ -69,7 +68,7 @@ export function Revisions() {
       <div>
         {project &&
           project.songs.map((song, index) => (
-            <div className="container d-flex projectcontainer my-5 col-8 justify-content-between ">
+            <div className="container d-flex projectcontainer my-1 col-8 justify-content-between ">
               <div className="d-flex">
                 <div>
                   {" "}
@@ -131,7 +130,7 @@ export function Revisions() {
       </div>
       <div className="">
           <Link to="/projectinput">
-            <p className="back2 p-2">Back</p>
+            <p className="back2 p-2">go back to your projects</p>
           </Link>
         </div>
     </div>

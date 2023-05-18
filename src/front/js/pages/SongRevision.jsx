@@ -26,17 +26,17 @@ export const SongRevision = () => {
 
   return (
     <div className="p-5 text-end">
-      <h3>{store.artistName}</h3>
-      <h3>{song.title}</h3>
+      <h4>{store.artistName}</h4>
+      <h2>{song.title}</h2>
       
       <ProyectRevision />
 
 
       <div className="text-center">
         <img src={VVVERSIONSLOGONEGRO} className="col-2"></img>
-        <div className="">
+        <div className="col-4">
           <Link to={`/revisions/${projectid}`}>
-            <p className="back2 p-2">BACK</p>
+            <p className="back2 p-2 ">back to revisions</p>
           </Link>
         </div>  
       </div>

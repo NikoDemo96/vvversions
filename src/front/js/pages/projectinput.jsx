@@ -36,25 +36,26 @@ export const ProjectInput = () => {
 
   return (
     <div>
-      <div className=" d-flex justify-content-between mt-5">
-        <div className="">
-          <Link to="/">
-            <img src={VVVERSIONSLOGONEGROMOBILE} className="back2 "></img>
-          </Link>
-        </div>
-        <div className="d-flex fs-1 mt-3">
-          {store.artistName}
-        </div>
-        <div className="mt-4">
+      <div className="text-end me-2 mt-3">
           <button
             onClick={handleLogout}
-            className="logouttitle text-danger me-5 "
+            className="logouttitle text-danger me-4"
           >
-            Log out
+            <i className="fas fa-sign-out-alt"></i>
           </button>
         </div>
+      <div className="text-end">
+        <div className="">
+          <Link to="/">
+            <img src={VVVERSIONSLOGONEGROMOBILE} className="back2"></img>
+          </Link>
+        </div>
+        <div className="col-12 text-center">
+          <h1>{store.artistName}</h1>
+        </div>
+        
       </div>
-      <div className=" p-5 text-center">
+      <div className="my-3 text-center">
         <input
           type="text"
           placeholder="    name"
@@ -66,7 +67,7 @@ export const ProjectInput = () => {
           add a project
         </button>
         {store.projects.map((project, index) => (
-          <div className="container d-flex projectcontainer my-3 col-8 justify-content-between">
+          <div className="container d-flex projectcontainer my-1 col-8 justify-content-between">
             <div className="d-flex">
               <div className="">
                 <img
@@ -99,7 +100,7 @@ export const ProjectInput = () => {
                 {" "}
                 <p>{project.version_date}</p>{" "}
               </div>
-              <div className="version">
+              <div className="version ">
                 <p>version {project.version} </p>
               </div>
               <div>

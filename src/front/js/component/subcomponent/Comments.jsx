@@ -52,11 +52,11 @@ const Comments = () => {
         <i>add your comment</i>
       </div>
       <div>{error !== "" && <span>Llene el comentario</span>}</div>
-      <div className="comment-form-row">
+      <div className="comment-form-row p-3">
         <input
           value={commentBody}
           onChange={(event) => handleCommentChange(event)}
-          className="message-input"
+          className="message-input p-3"
           placeholder="what do you think of this song?"
         ></input>
         <button onClick={(event) => onComment(event)} className="btn">

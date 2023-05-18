@@ -188,6 +188,7 @@ a:active {
 
 .version {
     font-size: 14px;
+    font-weight: 600
 
     ;
 }
@@ -291,8 +292,9 @@ input::placeholder {
 }
 
 .back2 {
-    width: 100px;
-    margin-left: 60px;
+    width: 110px;
+    margin-right: 100px;
+    margin-top: 17px;
 }
 
 .aboutmetxt {
@@ -337,17 +339,20 @@ input::placeholder {
     justify-content: end;
     border: none;
     background-color: transparent;
-    margin-top: 12px;
-    margin-left: 140px;
+    
 }
 
 .revisiontitle {
     justify-content: center;
-    margin-left: 610px;
+    margin-left: 560px;
     font-size: 30px;
 }
 
 .basura {
     border: none;
     background-color: transparent;
+}
+
+.artistname {
+    
 }

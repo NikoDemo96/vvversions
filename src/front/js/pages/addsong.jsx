@@ -28,12 +28,12 @@ export const AddSong = () => {
     
     return (
     <div>
-        <div><div className=""><Link to="/projectinput"><p className="ms-2 mt-2">back</p></Link></div> </div>
+        <div><div className=""><Link to="/projectinput"><p className="ms-4 mt-3"><i className="fas fa-backward text-dark mt-3"></i></p></Link></div> </div>
     <div className="d-flex justify-content-center ">   
         <div className="form-group mb-5">
         <div className="addproject p-3 ">
             <form onSubmit={handleSubmit(OnSubmit)}>
-                <h2 className="text-center text-white p-3 mt-3">Add Files</h2>
+                <h2 className="text-center text-white p-3 ">Add Files</h2>
                 <div>
                     <div className="p-1">
                         <label className="text-white p-1">Add song</label>

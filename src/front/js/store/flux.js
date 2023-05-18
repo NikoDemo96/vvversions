@@ -291,7 +291,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       createProject: async (data) => {
         console.log(data);
-        toast.info("Creating project");
+      
         const store = getStore();
         const body = { ...data, version: 1, version_date: todayDate() };
         const options = {
